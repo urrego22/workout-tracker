@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 //Importar rutas especificas
-const usersRoutes = requiere('./users.routes');
+const usersRoutes = require('./users.routes');
 
 
 //Configuracion de rutas
