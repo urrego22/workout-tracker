@@ -22,3 +22,26 @@ router.get('/', (req, res) => {
   ...
 });
 
+##commit 7
+## 📌 Endpoints de la API
+
+- **GET** `/api/v1/users`  
+  Lista todos los usuarios.  
+  Permite filtros opcionales usando query params:  
+  - `?role=user` → filtra por rol.  
+  - `?search=nombre` → busca por nombre.  
+
+- **GET** `/api/v1/users/:id`  
+  Obtiene un usuario por su **ID**.  
+
+- **POST** `/api/v1/users`  
+  Crea un nuevo usuario.  
+
+- **PUT** `/api/v1/users/:id`  
+  Actualiza un usuario existente por su **ID**.  
+
+- **DELETE** `/api/v1/users/:id`  
+  Elimina un usuario por su **ID**.  
+
+
+
