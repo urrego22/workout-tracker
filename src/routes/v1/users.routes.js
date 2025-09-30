@@ -16,10 +16,6 @@ let users = [
 ];
 
 
-//GET /api7V17users
-router.get('/', (req, res) => {
-   res.status(200).json(users);
-});
 
 // GET /users/:id
 router.get('/:id', (req, res) => {
@@ -94,6 +90,26 @@ router.delete('/:id', (req, res) => {
   const deletedUser = users.splice(index, 1);           // 4
   res.status(200).json({ deleted: deletedUser[0].id }); // 5
 });
+
+// GET /users?role=user&search=Carlos
+router.get('/', (req, res) => {
+  console.log(req.query);
+  const { role, search } = req.query;  // 1
+  let result = users;                  // 2
+
+  if (role) {                          // 3
+    result = result.filter(u => u.role === role);
+  }
+
+  if (search) {                        // 4
+    result = result.filter(u =>
+      u.nombre.toLowerCase().includes(search.toLowerCase())
+    );
+  }
+
+  res.status(200).json(result);        // 5
+});
+
 
 
 
