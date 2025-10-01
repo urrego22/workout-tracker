@@ -1,3 +1,4 @@
+// Estado en memoria (simulación)
 let ejercicios = [
   {
     id: "1",
@@ -18,6 +19,7 @@ let ejercicios = [
   }
 ];
 
+// Obtener todos los ejercicios con filtros
 const getEjercicios = (req, res) => {
   const { estado, search } = req.query;
   let result = ejercicios;
@@ -45,4 +47,74 @@ const getEjercicioById = (req, res) => {
   }
 
   res.status(200).json(ejercicio);
+};
+
+// Crear un nuevo ejercicio
+const createEjercicio = (req, res) => {
+  const { usuarioID, titulo, fechaHora, estado, notas, ejercicios: lista } = req.body;
+
+  if (!usuarioID || !titulo) {
+    return res.status(400).json({ error: "usuarioID y titulo son requeridos" });
+  }
+
+  const newEjercicio = {
+    id: `${Date.now()}`,
+    usuarioID,
+    titulo,
+    fechaHora: fechaHora || new Date().toISOString(),
+    estado: estado || "pendiente",
+    notas: notas || "",
+    ejercicios: lista || []
+  };
+
+  ejercicios.push(newEjercicio);
+  res.status(201).json(newEjercicio);
+};
+
+// Actualizar un ejercicio
+const updateEjercicio = (req, res) => {
+  const { id } = req.params;
+  const { usuarioID, titulo, fechaHora, estado, notas, ejercicios: lista } = req.body;
+
+  const index = ejercicios.findIndex(e => e.id === id);
+  if (index === -1) {
+    return res.status(404).json({ error: "Ejercicio no encontrado" });
+  }
+
+  if (!usuarioID || !titulo) {
+    return res.status(400).json({ error: "usuarioID y titulo son requeridos" });
+  }
+
+  ejercicios[index] = {
+    ...ejercicios[index],
+    usuarioID,
+    titulo,
+    fechaHora,
+    estado,
+    notas,
+    ejercicios: lista
+  };
+
+  res.status(200).json(ejercicios[index]);
+};
+
+// Eliminar un ejercicio
+const deleteEjercicio = (req, res) => {
+  const { id } = req.params;
+  const index = ejercicios.findIndex(e => e.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ error: "Ejercicio no encontrado" });
+  }
+
+  const deletedEjercicio = ejercicios.splice(index, 1);
+  res.status(200).json({ deleted: deletedEjercicio[0].id });
+};
+
+module.exports = {
+  getEjercicios,
+  getEjercicioById,
+  createEjercicio,
+  updateEjercicio,
+  deleteEjercicio
 };
