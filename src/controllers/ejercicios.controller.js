@@ -71,7 +71,7 @@ const createEjercicio = (req, res) => {
   res.status(201).json(newEjercicio);
 };
 
-// Actualizar un ejercicio (PUT - reemplaza todo)
+// Actualizar un ejercicio (PUT completo)
 const updateEjercicio = (req, res) => {
   const { id } = req.params;
   const { usuarioID, titulo, fechaHora, estado, notas, ejercicios: lista } = req.body;
@@ -98,10 +98,10 @@ const updateEjercicio = (req, res) => {
   res.status(200).json(ejercicios[index]);
 };
 
-// Actualización parcial (PATCH - solo modifica lo enviado)
+// Actualización parcial (PATCH)
 const patchEjercicio = (req, res) => {
   const { id } = req.params;
-  const data = req.body;
+  const cambios = req.body;
 
   const index = ejercicios.findIndex(e => e.id === id);
   if (index === -1) {
@@ -110,7 +110,7 @@ const patchEjercicio = (req, res) => {
 
   ejercicios[index] = {
     ...ejercicios[index],
-    ...data
+    ...cambios
   };
 
   res.status(200).json(ejercicios[index]);
@@ -134,6 +134,6 @@ module.exports = {
   getEjercicioById,
   createEjercicio,
   updateEjercicio,
-  patchEjercicio,   
+  patchEjercicio,
   deleteEjercicio
 };

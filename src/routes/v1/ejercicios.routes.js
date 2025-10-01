@@ -4,7 +4,7 @@ const {
   getEjercicioById,
   createEjercicio,
   updateEjercicio,
-  patchEjercicio,   
+  patchEjercicio,
   deleteEjercicio
 } = require("../../controllers/ejercicios.controller");
 
@@ -15,7 +15,8 @@ router.get("/", getEjercicios);
 router.get("/:id", getEjercicioById);
 router.post("/", createEjercicio);
 router.put("/:id", updateEjercicio);
-router.patch("/:id", patchEjercicio);  
+router.patch("/:id", patchEjercicio);
 router.delete("/:id", deleteEjercicio);
 
 module.exports = router;
+
