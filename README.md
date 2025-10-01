@@ -43,5 +43,15 @@ router.get('/', (req, res) => {
 - **DELETE** `/api/v1/users/:id`  
   Elimina un usuario por su **ID**.  
 
+  -Ejercicios
+
+ GET '/api/v1/ejercicios'
+Lista todos los ejercicios registrados.
+
+GET '/api/v1/ejercicios/:id'
+Obtiene un ejercicio específico por su ID.
+
+POST '/api/v1/ejercicios'
+Crea un nuevo ejercicio.
 
 
