@@ -80,7 +80,15 @@ const patchReporte = (req, res) => {
 
 
 const deleteReporte = (req, res) => {
-  
+    const { usuarioId } = req.params;
+  const index = reportes.findIndex(r => r.usuarioId == usuarioId);
+
+  if (index === -1) {
+    return res.status(404).json({ error: "Reporte no encontrado" });
+  }
+
+  const deleted = reportes.splice(index, 1);
+  res.status(200).json({ deleted: deleted[0].usuarioId });
 };
 
 module.exports = {
