@@ -10,9 +10,30 @@ let comentarios = [
   }
 ];
 
+const getComentarios = (req, res) => {
+  res.status(200).json(comentarios);
+};
+
+const getComentarioById = (req, res) => {
+  const { id } = req.params;
+  const comentario = comentarios.find(c => c.id === id);
+
+  if (!comentario) {
+    return res.status(404).json({ error: "Comentario no encontrado" });
+  }
+
+  res.status(200).json(comentario);
+};
+
+const createComentario = (req, res) => {  };
+const updateComentario = (req, res) => {  };
+const patchComentario = (req, res) => {  };
+const deleteComentario = (req, res) => {  };
+
+
 
 module.exports = {
-getComentarios,
+  getComentarios,
   getComentarioById,
   createComentario,
   updateComentario,
