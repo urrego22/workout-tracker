@@ -22,7 +22,24 @@ const getProgramacionById = (req, res) => {
 
   res.status(200).json(programacion);
 };
-const createProgramacion = (req, res) => {};
+const createProgramacion = (req, res) => {
+    const { entrenamientoId, fecha, hora, estado } = req.body;
+
+  if (!entrenamientoId || !fecha || !hora) {
+    return res.status(400).json({ error: "entrenamientoId, fecha y hora son requeridos" });
+  }
+
+  const newProgramacion = {
+    id: `${Date.now()}`,
+    entrenamientoId,
+    fecha,
+    hora,
+    estado: estado || "programado"
+  };
+
+  programaciones.push(newProgramacion);
+  res.status(201).json(newProgramacion)
+};
 const updateProgramacion = (req, res) => {};
 const patchProgramacion = (req, res) => {};
 const deleteProgramacion = (req, res) => {};
