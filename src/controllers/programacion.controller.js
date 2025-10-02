@@ -40,8 +40,36 @@ const createProgramacion = (req, res) => {
   programaciones.push(newProgramacion);
   res.status(201).json(newProgramacion)
 };
-const updateProgramacion = (req, res) => {};
-const patchProgramacion = (req, res) => {};
+
+const updateProgramacion = (req, res) => {
+     const { id } = req.params;
+  const { entrenamientoId, fecha, hora, estado } = req.body;
+
+  const index = programaciones.findIndex(p => p.id === id);
+  if (index === -1) {
+    return res.status(404).json({ error: "Programación no encontrada" });
+  }
+
+  if (!entrenamientoId || !fecha || !hora) {
+    return res.status(400).json({ error: "entrenamientoId, fecha y hora son requeridos" });
+  }
+
+  programaciones[index] = { ...programaciones[index], entrenamientoId, fecha, hora, estado };
+  res.status(200).json(programaciones[index]);
+};
+
+const patchProgramacion = (req, res) => {
+    const { id } = req.params;
+  const updates = req.body;
+
+  const index = programaciones.findIndex(p => p.id === id);
+  if (index === -1) {
+    return res.status(404).json({ error: "Programación no encontrada" });
+  }
+
+  programaciones[index] = { ...programaciones[index], ...updates };
+  res.status(200).json(programaciones[index]);
+};
 const deleteProgramacion = (req, res) => {};
 
 
