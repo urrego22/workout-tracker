@@ -87,3 +87,43 @@ Actualiza parcialmente una programación.
 
 DELETE '/api/v1/programacion/:id'
 Elimina una programación.
+
+ListaEntrenamiento
+
+GET `/api/v1/listaentrenamiento`  
+Lista todas las listas de entrenamientos.
+
+GET `/api/v1/listaentrenamiento/:id`  
+Obtiene una lista de entrenamientos por ID.
+
+POST `/api/v1/listaentrenamiento`  
+Crea una nueva lista de entrenamientos.
+
+PUT `/api/v1/listaentrenamiento/:id`  
+Actualiza una lista de entrenamientos completa.
+
+PATCH `/api/v1/listaentrenamiento/:id`  
+Actualiza parcialmente una lista de entrenamientos.
+
+DELETE `/api/v1/listaentrenamiento/:id`  
+Elimina una lista de entrenamientos.
+
+comentarios
+GET    '/api/v1/comentarios'        
+Lista todos los comentarios
+
+GET    '/api/v1/comentarios/:id'    
+ Obtiene un comentario por ID
+
+POST   '/api/v1/comentarios'        
+Crea un comentario
+
+PUT    '/api/v1/comentarios/:id'    
+Actualiza un comentario completo
+
+PATCH  '/api/v1/comentarios/:id'    
+Actualiza parcialmente un comentario
+
+DELETE '/api/v1/comentarios/:id'   
+Elimina un comentario
+
