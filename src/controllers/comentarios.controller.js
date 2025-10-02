@@ -79,8 +79,18 @@ const patchComentario = (req, res) => {
 
   res.status(200).json(comentarios[index]);
  };
- 
-const deleteComentario = (req, res) => {  };
+
+const deleteComentario = (req, res) => { 
+     const { id } = req.params;
+  const index = comentarios.findIndex(c => c.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ error: "Comentario no encontrado" });
+  }
+
+  const deleted = comentarios.splice(index, 1);
+  res.status(200).json({ deleted: deleted[0].id });
+ };
 
 
 
