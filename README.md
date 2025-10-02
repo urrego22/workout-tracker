@@ -69,3 +69,21 @@ PATCH '/api/v1/entrenamientos/:id' Actualiza parcialmente un entrenamiento.
 DELETE '/api/v1/entrenamientos/:id'  Elimina un entrenamiento.
 
 
+programacion
+GET '/api/v1/programacion'
+Lista todas las programaciones.
+
+GET '/api/v1/programacion/:id'
+Obtiene una programación por ID.
+
+POST '/api/v1/programacion'
+Crea una nueva programación.
+
+PUT '/api/v1/programacion/:id'
+Actualiza una programación completa.
+
+PATCH '/api/v1/programacion/:id'
+Actualiza parcialmente una programación.
+
+DELETE '/api/v1/programacion/:id'
+Elimina una programación.
