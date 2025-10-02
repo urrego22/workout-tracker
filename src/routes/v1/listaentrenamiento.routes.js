@@ -1,4 +1,4 @@
-// src/routes/v1/listaentrenamiento.routes.js
+
 const express = require("express");
 const {
   getListaEntrenamiento,
