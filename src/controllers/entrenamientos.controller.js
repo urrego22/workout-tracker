@@ -25,6 +25,19 @@ const getEntrenamientoById = (req, res) => {
 };
 
 const createEntrenamiento = (req, res) => {
+   const { entrenamientoId, ejercicioId, series, repeticiones, peso } = req.body;
+  if (!entrenamientoId || !ejercicioId) {
+    return res.status(400).json({ error: "entrenamientoId y ejercicioId son requeridos" });
+  }
+  const newEntrenamiento = {
+    id: `${Date.now()}`,
+    entrenamientoId,
+    ejercicioId,
+    series,
+    repeticiones,
+    peso
+  };
+  entrenamientos.push(newEntrenamiento);
   res.status(201).json({ msg: "Crear entrenamiento (pendiente)" });
 };
 
