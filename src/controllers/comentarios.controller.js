@@ -25,7 +25,25 @@ const getComentarioById = (req, res) => {
   res.status(200).json(comentario);
 };
 
-const createComentario = (req, res) => {  };
+const createComentario = (req, res) => { 
+     const { entrenamientoId, comentario, fecha } = req.body;
+
+  if (!entrenamientoId || !comentario) {
+    return res.status(400).json({ error: "entrenamientoId y comentario son requeridos" });
+  }
+
+  const newComentario = {
+    id: `${Date.now()}`,
+    entrenamientoId,
+    comentario,
+    fecha: fecha || new Date().toISOString()
+  };
+
+  comentarios.push(newComentario);
+  res.status(201).json(newComentario);
+ };
+
+ 
 const updateComentario = (req, res) => {  };
 const patchComentario = (req, res) => {  };
 const deleteComentario = (req, res) => {  };
