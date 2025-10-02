@@ -29,7 +29,15 @@ const { usuarioId } = req.params;
 
 
 const createReporte = (req, res) => {
- 
+   const { usuarioId, totalEntrenamientos, completados, proceso } = req.body;
+
+  if (!usuarioId || totalEntrenamientos == null || completados == null || proceso == null) {
+    return res.status(400).json({ error: "Todos los campos son requeridos" });
+  }
+
+  const newReporte = { usuarioId, totalEntrenamientos, completados, proceso };
+  reportes.push(newReporte);
+  res.status(201).json(newReporte);
 };
 
 
