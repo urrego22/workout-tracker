@@ -107,3 +107,23 @@ Actualiza parcialmente una lista de entrenamientos.
 
 DELETE `/api/v1/listaentrenamiento/:id`  
 Elimina una lista de entrenamientos.
+
+comentarios
+GET    '/api/v1/comentarios'        
+Lista todos los comentarios
+
+GET    '/api/v1/comentarios/:id'    
+ Obtiene un comentario por ID
+
+POST   '/api/v1/comentarios'        
+Crea un comentario
+
+PUT    '/api/v1/comentarios/:id'    
+Actualiza un comentario completo
+
+PATCH  '/api/v1/comentarios/:id'    
+Actualiza parcialmente un comentario
+
+DELETE '/api/v1/comentarios/:id'   
+Elimina un comentario
+
