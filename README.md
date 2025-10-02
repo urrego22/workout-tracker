@@ -54,4 +54,18 @@ Obtiene un ejercicio específico por su ID.
 POST '/api/v1/ejercicios'
 Crea un nuevo ejercicio.
 
+Entrenamientos
+
+GET '/api/v1/entrenamientos'  Lista todos los entrenamientos.
+
+GET '/api/v1/entrenamientos/:id'  Obtiene un entrenamiento por ID.
+
+POST '/api/v1/entrenamientos'  Crea un entrenamiento.
+
+PUT '/api/v1/entrenamientos/:id' Actualiza un entrenamiento completo.
+
+PATCH '/api/v1/entrenamientos/:id' Actualiza parcialmente un entrenamiento.
+
+DELETE '/api/v1/entrenamientos/:id'  Elimina un entrenamiento.
+
 

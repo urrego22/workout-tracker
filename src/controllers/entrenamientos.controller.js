@@ -60,6 +60,12 @@ const patchEntrenamiento = (req, res) => {
 };
 
 const deleteEntrenamiento = (req, res) => {
+  const { id } = req.params;
+  const index = entrenamientos.findIndex(e => e.id === id);
+
+  if (index === -1) return res.status(404).json({ error: "Entrenamiento no encontrado" });
+
+  const deleted = entrenamientos.splice(index, 1);
   res.status(200).json({ msg: "Eliminar entrenamiento (pendiente)" });
 };
 
