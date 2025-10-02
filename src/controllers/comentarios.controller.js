@@ -43,9 +43,43 @@ const createComentario = (req, res) => {
   res.status(201).json(newComentario);
  };
 
+
+const updateComentario = (req, res) => { 
+    const { id } = req.params;
+  const { entrenamientoId, comentario, fecha } = req.body;
+
+  const index = comentarios.findIndex(c => c.id === id);
+  if (index === -1) {
+    return res.status(404).json({ error: "Comentario no encontrado" });
+  }
+
+  if (!entrenamientoId || !comentario) {
+    return res.status(400).json({ error: "entrenamientoId y comentario son requeridos" });
+  }
+
+  comentarios[index] = { ...comentarios[index], entrenamientoId, comentario, fecha };
+  res.status(200).json(comentarios[index]);
+ };
+
+const patchComentario = (req, res) => { 
+     const { id } = req.params;
+  const { entrenamientoId, comentario, fecha } = req.body;
+
+  const index = comentarios.findIndex(c => c.id === id);
+  if (index === -1) {
+    return res.status(404).json({ error: "Comentario no encontrado" });
+  }
+
+  comentarios[index] = {
+    ...comentarios[index],
+    entrenamientoId: entrenamientoId || comentarios[index].entrenamientoId,
+    comentario: comentario || comentarios[index].comentario,
+    fecha: fecha || comentarios[index].fecha
+  };
+
+  res.status(200).json(comentarios[index]);
+ };
  
-const updateComentario = (req, res) => {  };
-const patchComentario = (req, res) => {  };
 const deleteComentario = (req, res) => {  };
 
 
