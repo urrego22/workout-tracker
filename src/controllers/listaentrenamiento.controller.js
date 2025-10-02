@@ -38,7 +38,29 @@ const getEntrenamientoById = (req, res) => {
   res.status(200).json(entrenamiento);
 };
 
-const createEntrenamiento = (req, res) => {};
+const createEntrenamiento = (req, res) => {
+    const { usuarioId, titulo, fechaHora, estado } = req.body;
+
+  if (!usuarioId || !titulo || !fechaHora) {
+    return res.status(400).json({ error: "usuarioId, titulo y fechaHora son requeridos" });
+  }
+
+  const usuario = listaentrenamiento.find(u => u.usuarioId === usuarioId);
+  if (!usuario) {
+    return res.status(404).json({ error: "Usuario no encontrado" });
+  }
+
+  const newEntrenamiento = {
+    id: Date.now(),
+    titulo,
+    fechaHora,
+    estado: estado || "pendiente"
+  };
+
+  usuario.entrenamientos.push(newEntrenamiento);
+  res.status(201).json(newEntrenamiento);
+};
+
 const updateEntrenamiento = (req, res) => {};
 const patchEntrenamiento = (req, res) => {};
 const deleteEntrenamiento = (req, res) => {};
