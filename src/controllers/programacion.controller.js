@@ -70,7 +70,18 @@ const patchProgramacion = (req, res) => {
   programaciones[index] = { ...programaciones[index], ...updates };
   res.status(200).json(programaciones[index]);
 };
-const deleteProgramacion = (req, res) => {};
+
+const deleteProgramacion = (req, res) => {
+    const { id } = req.params;
+  const index = programaciones.findIndex(p => p.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ error: "Programación no encontrada" });
+  }
+
+  const deleted = programaciones.splice(index, 1);
+  res.status(200).json({ deleted: deleted[0].id });
+};
 
 
 
