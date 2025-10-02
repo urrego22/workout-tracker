@@ -103,7 +103,23 @@ const patchEntrenamiento = (req, res) => {
   res.status(200).json(updated);
 };
 
-const deleteEntrenamiento = (req, res) => {};
+const deleteEntrenamiento = (req, res) => {
+    const { id } = req.params;
+
+  let deleted = null;
+  listaentrenamiento.forEach(usuario => {
+    const index = usuario.entrenamientos.findIndex(ent => ent.id === parseInt(id));
+    if (index !== -1) {
+      deleted = usuario.entrenamientos.splice(index, 1);
+    }
+  });
+
+  if (!deleted) {
+    return res.status(404).json({ error: "Entrenamiento no encontrado" });
+  }
+
+  res.status(200).json({ deleted: deleted[0].id });
+};
 
 module.exports = {
   getListaEntrenamiento,
