@@ -61,8 +61,48 @@ const createEntrenamiento = (req, res) => {
   res.status(201).json(newEntrenamiento);
 };
 
-const updateEntrenamiento = (req, res) => {};
-const patchEntrenamiento = (req, res) => {};
+const updateEntrenamiento = (req, res) => {
+    const { id } = req.params;
+  const { titulo, fechaHora, estado } = req.body;
+
+  let updated = null;
+  listaentrenamiento.forEach(usuario => {
+    const index = usuario.entrenamientos.findIndex(ent => ent.id === parseInt(id));
+    if (index !== -1) {
+      usuario.entrenamientos[index] = { id: parseInt(id), titulo, fechaHora, estado };
+      updated = usuario.entrenamientos[index];
+    }
+  });
+
+  if (!updated) {
+    return res.status(404).json({ error: "Entrenamiento no encontrado" });
+  }
+
+  res.status(200).json(updated);
+};
+
+const patchEntrenamiento = (req, res) => {
+    const { id } = req.params;
+  const { titulo, fechaHora, estado } = req.body;
+
+  let updated = null;
+  listaentrenamiento.forEach(usuario => {
+    const entrenamiento = usuario.entrenamientos.find(ent => ent.id === parseInt(id));
+    if (entrenamiento) {
+      if (titulo) entrenamiento.titulo = titulo;
+      if (fechaHora) entrenamiento.fechaHora = fechaHora;
+      if (estado) entrenamiento.estado = estado;
+      updated = entrenamiento;
+    }
+  });
+
+  if (!updated) {
+    return res.status(404).json({ error: "Entrenamiento no encontrado" });
+  }
+
+  res.status(200).json(updated);
+};
+
 const deleteEntrenamiento = (req, res) => {};
 
 module.exports = {
